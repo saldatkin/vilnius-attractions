@@ -10,6 +10,6 @@ export class OsmMapComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-
 }
