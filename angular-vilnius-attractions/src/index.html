@@ -22,6 +22,7 @@
   </script>
   <script>
     const map = L.map('map').setView([52.119, 23.83], 13.5);
+
     const CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">saldatkin</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: 'abcd',
@@ -30,29 +31,51 @@
     CartoDB_Voyager.addTo(map);
 
 
-
-    const GRN_CIRCLE = L.circle([52.1192, 23.834],{
-      color: 'green',
-      radius: 50
-    }).bindPopup('I am green');;
-    const YLW_CIRCLE = L.circle([52.1185, 23.830],{
-      color: 'yellow',
-      radius: 50
-    }).bindPopup('I am yellow');;
-    const RED_CIRCLE = L.circle([52.1189, 23.81],{
-      color: 'red',
-      radius: 100
-    }).bindPopup('I am red and big');;
-    const DEF_CIRCLE = L.circle([52.1196, 23.826],{
-      radius: 50
-    }).bindPopup('I am default color marker');
+    const _grn_icon = L.icon({
+      iconUrl: 'assets/custom-marker.svg',
+      iconSize: [40,40],
+    })
 
 
 
-    GRN_CIRCLE.addTo(map);
-    YLW_CIRCLE.addTo(map);
-    RED_CIRCLE.addTo(map);
-    DEF_CIRCLE.addTo(map);
+    const GRN_CIRCLE =
+      createMarker([52.12822, 23.834], _grn_icon,  'green', 50, true);
+    const YLW_CIRCLE =
+      createMarker([52.1175, 23.830], _grn_icon, 'yellow', 50, true);
+    const RED_CIRCLE =
+      createMarker([52.1189, 23.81], _grn_icon, 'red', 50, true);
+    const DEF_CIRCLE =
+      createMarker([52.1196, 23.826], _grn_icon, '', 50, true);
+
+    const markers = {
+      "green": GRN_CIRCLE,
+      "yellow": YLW_CIRCLE,
+      "red": RED_CIRCLE,
+      "blue": DEF_CIRCLE,
+    }
+
+    L.control.layers({map}, markers, {collapsed: false}).addTo(map);
+
+
+
+
+
+
+
+
+    function createMarker(coordinates, icon, color, radius, draggable) {
+      const marker = L.marker(coordinates, {
+        icon: icon,
+        color: color,
+        radius: radius,
+        draggable: draggable,
+      });
+      marker.addTo(map).on('click', (e) => {
+        coordinates = e.latlng;
+      })
+      marker.bindPopup(`${coordinates[0]}<br> ${coordinates[1]}`);
+      return marker;
+    };
   </script>
 </body>
 </html>

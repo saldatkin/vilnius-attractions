@@ -2,5 +2,23 @@
   margin: 0 auto;
   height: 30rem;
   width: 50rem;
-  border: 1px purple solid;
+  border: 0.2rem rgb(0, 0, 0) solid;
 }
+.leaflet-popup-content-wrapper{
+  background-color: black;
+  color: white;
+  font-weight: 700;
+}
+
+.leaflet-popup-tip{
+  background:rgb(0, 0, 0);
+}
+.leaflet-bar a{
+  background-color: black;
+  color: white;
+}
+.leaflet-bar a:hover{
+  background-color: rgb(78, 78, 78);
+  color: white;
+}
+
