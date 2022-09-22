@@ -30,6 +30,8 @@
     });
     CartoDB_Voyager.addTo(map);
 
+    id = 0;
+
 
     const _grn_icon = L.icon({
       iconUrl: 'assets/custom-marker.svg',
@@ -54,7 +56,18 @@
       "blue": DEF_CIRCLE,
     }
 
-    L.control.layers({map}, markers, {collapsed: false}).addTo(map);
+    let controlLayers = L.control.layers({map}, markers, {collapsed: false});
+    controlLayers.addTo(map)
+
+    map.on('dblclick', (e) => {
+      marker = createMarker(e.latlng);
+      marker.bindPopup(`${e.latlng.lat.toFixed(5)}<br> ${e.latlng.lng.toFixed(5)}`);
+      controlLayers.remove();
+      markers[id] = marker;
+      controlLayers = L.control.layers({map}, markers, {collapsed: false});
+      controlLayers.addTo(map);
+      id++;
+    });
 
 
 
@@ -63,7 +76,7 @@
 
 
 
-    function createMarker(coordinates, icon, color, radius, draggable) {
+    function createMarker(coordinates, icon = _grn_icon, color = 'yellow', radius = 50, draggable = true) {
       const marker = L.marker(coordinates, {
         icon: icon,
         color: color,
@@ -73,7 +86,7 @@
       marker.addTo(map).on('click', (e) => {
         coordinates = e.latlng;
       })
-      marker.bindPopup(`${coordinates[0]}<br> ${coordinates[1]}`);
+      marker.bindPopup(`${Number(coordinates[0]).toFixed(5)}<br> ${Number(coordinates[1]).toFixed(5)}`);
       return marker;
     };
   </script>
