@@ -1,30 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Vilnius Attractions</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="/assets/vilnius-logo.png">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-   crossorigin=""/>
-   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-</head>
-<body>
-  <div id="map">
-
-  </div>
-  <app-root>
-  </app-root>
-  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-   crossorigin="">
-  </script>
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js">
-  </script>
-  <script>
-    const map = L.map('map').setView([52.119, 23.83], 13.5);
+const map = L.map('map').setView([52.119, 23.83], 13.5);
 
     const CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">saldatkin</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -48,16 +22,9 @@
     const YLW_CIRCLE =
       createMarker([52.1175, 23.830], _grn_icon, 'yellow', 50, true);
     const RED_CIRCLE =
-      createMarker([52.1189, 23.81], _grn_icon, 'red', 50, true)
-      .bindTooltip("Telmy forest", {
-        permanent: true,
-        direction: 'right'
-      });
-
+      createMarker([52.1189, 23.81], _grn_icon, 'red', 50, true);
     const DEF_CIRCLE =
-      createMarker([52.1196, 23.826], _grn_icon, '', 50, true)
-
-
+      createMarker([52.1196, 23.826], _grn_icon, '', 50, true);
 
     const markers = {
       "green": GRN_CIRCLE,
@@ -79,18 +46,8 @@
       id++;
     });
 
-    map.on('contextmenu', (e) => {
-      e.preventDefault();
-    })
 
 
-    L.Routing.control({
-      waypoints: [
-        L.latLng(GRN_CIRCLE._latlng.lat, GRN_CIRCLE._latlng.lng),
-        L.latLng(YLW_CIRCLE._latlng.lat, YLW_CIRCLE._latlng.lng)
-      ],
-      color: 'blue'
-    }).addTo(map);
 
 
 
@@ -109,6 +66,3 @@
       marker.bindPopup(`${Number(coordinates[0]).toFixed(5)}<br> ${Number(coordinates[1]).toFixed(5)}`);
       return marker;
     };
-  </script>
-</body>
-</html>

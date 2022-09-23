@@ -21,4 +21,10 @@
   background-color: rgb(78, 78, 78);
   color: white;
 }
+.leaflet-marker-icon{
+  src: 'assets/custom-marker.svg';
+}
+.leaflet-routing-container{
+  display: none;
+}
 
