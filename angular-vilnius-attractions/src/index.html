@@ -6,23 +6,61 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/assets/vilnius-logo.png">
+  <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-   crossorigin=""/>
-   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  <script src="/main.js">
+
+  </script>
 </head>
 <body>
-  <div id="map">
 
+  <!---------------------------------HTML----------------------------------->
+  <header>
+
+  </header>
+
+  <main>
+    <div class="main-wrapper">
+      <div class="form-wrapper">
+        <form action="submit" class="coordinates-form">
+          <input class="coordinates-input" type="text" placeholder="ex: 55.555555, 22.222222">
+          <select class="coordinates-input" name="select-attr" class="select-attr">
+            <option value="Gediminas Castle Tower">Gediminas Castle Tower</option>
+            <option value="Trakai Island Castle">Trakai Island Castle</option>
+            <option value="Užupis">Užupis</option>
+            <option value="Television Tower">Television Tower</option>
+          </select>
+          <button class="coordinates-btn" type="submit">Submit</button>
+        </form>
+      </div>
+      <div id="map" class="mapper">
+
+      </div>
+    </div>
   </div>
-  <app-root>
-  </app-root>
+
+  <footer>
+
+  </footer>
+
+
+  <!-------------------------------LEAFLET---------------------------------->
+
   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-   crossorigin="">
+          integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+          crossorigin="">
   </script>
+
+  <!------------------------------LEAFLET-ROUTING--------------------------->
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js">
   </script>
+
+
+
+  <!---------------------------------MY SCRIPT------------------------------>
   <script>
     const map = L.map('map').setView([52.119, 23.83], 13.5);
 
@@ -109,6 +147,7 @@
       marker.bindPopup(`${Number(coordinates[0]).toFixed(5)}<br> ${Number(coordinates[1]).toFixed(5)}`);
       return marker;
     };
+
   </script>
 </body>
 </html>

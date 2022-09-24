@@ -1,0 +1,93 @@
+#map{
+  margin: 0 auto;
+  height: 30rem;
+  width: 50rem;
+  border: 0.2rem rgb(0, 0, 0) solid;
+}
+
+
+
+
+.main-wrapper{
+  width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.coordinates-form{
+  width: 15rem;
+  display: grid;
+  grid-auto-flow: row;
+}
+.coordinates-input{
+  height: 3rem;
+  border: none;
+  color: #2F4858;
+  font-weight: bold;
+  background-color: #c3d4aa;
+}
+.coordinates-input:hover{
+  cursor:pointer;
+  background-color: rgb(195, 212, 170, 0.5);
+}
+.coordinates-input:active{
+  border: none;
+  background-color: #c3d4aabf;
+}
+
+option{
+  height: 3rem;
+  font-weight: bold;
+}
+
+
+
+
+.coordinates-btn{
+  height: 2rem;
+  color: #2F4858;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  background-color:rgb(149, 185, 157);
+}
+.coordinates-btn:hover{
+  cursor:pointer;
+  background-color:rgb(149, 185, 157, 0.5);
+}
+.coordinates-btn:active{
+  border: none;
+  background-color:rgb(149, 185, 157, 0.75);
+}
+
+
+
+
+
+
+
+.leaflet-popup-content-wrapper{
+  background-color: black;
+  color: white;
+  font-weight: 700;
+}
+
+.leaflet-popup-tip{
+  background:rgb(0, 0, 0);
+}
+.leaflet-bar a{
+  background-color: black;
+  color: white;
+}
+.leaflet-bar a:hover{
+  background-color: rgb(78, 78, 78);
+  color: white;
+}
+.leaflet-marker-icon{
+  src: 'assets/custom-marker.svg';
+}
+.leaflet-routing-container{
+  display: none;
+}
+
