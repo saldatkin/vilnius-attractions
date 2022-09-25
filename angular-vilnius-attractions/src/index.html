@@ -25,15 +25,15 @@
   <main>
     <div class="main-wrapper">
       <div class="form-wrapper">
-        <form action="submit" class="coordinates-form">
-          <input class="coordinates-input" type="text" placeholder="ex: 55.555555, 22.222222">
-          <select class="coordinates-input" name="select-attr" class="select-attr">
-            <option value="Gediminas Castle Tower">Gediminas Castle Tower</option>
-            <option value="Trakai Island Castle">Trakai Island Castle</option>
-            <option value="Užupis">Užupis</option>
-            <option value="Television Tower">Television Tower</option>
+        <form id="coordForm" class="coordinates-form">
+          <input autocomplete="off" value="" id="coordInput" class="coordinates-input" type="text" placeholder="ex: 55.555555, 22.222222">
+          <select value="destination" class="coordinates-input select-attr" id="coordinates-input" name="select-attr">
+            <option value="Gediminas Tower">Gediminas Castle Tower</option>
+            <option value="Trakai Castle">Trakai Island Castle</option>
+            <option value="Republic of Užupis">Republic of Užupis</option>
+            <option value="TV Tower">Television Tower</option>
           </select>
-          <button class="coordinates-btn" type="submit">Submit</button>
+          <button class="coordinates-btn" onclick="onSubmit()">Submit</button>
         </form>
       </div>
       <div id="map" class="mapper">
@@ -62,7 +62,7 @@
 
   <!---------------------------------MY SCRIPT------------------------------>
   <script>
-    const map = L.map('map').setView([52.119, 23.83], 13.5);
+    const map = L.map('map').setView([54.68717, 25.16475], 11);
 
     const CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">saldatkin</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -71,8 +71,9 @@
     });
     CartoDB_Voyager.addTo(map);
 
-    id = 0;
-
+    let id = 0;
+    let currentRoute = '';
+    let marker = '';
 
     const _grn_icon = L.icon({
       iconUrl: 'assets/custom-marker.svg',
@@ -81,60 +82,36 @@
 
 
 
-    const GRN_CIRCLE =
-      createMarker([52.12822, 23.834], _grn_icon,  'green', 50, true);
-    const YLW_CIRCLE =
-      createMarker([52.1175, 23.830], _grn_icon, 'yellow', 50, true);
-    const RED_CIRCLE =
-      createMarker([52.1189, 23.81], _grn_icon, 'red', 50, true)
-      .bindTooltip("Telmy forest", {
+    const GEDIMINAS_TOWER_MARKER =
+      createMarker([54.68676, 25.29070], _grn_icon,  'green', 50);
+    const TV_TOWER_MARKER =
+      createMarker([54.68717, 25.21475], _grn_icon, 'yellow', 50);
+    const UZUPIS_MARKER =
+      createMarker([54.68176, 25.30070], _grn_icon, 'red', 50)
+      .bindTooltip("Uzupis", {
         permanent: true,
         direction: 'right'
       });
-
-    const DEF_CIRCLE =
-      createMarker([52.1196, 23.826], _grn_icon, '', 50, true)
-
+    const TRAKAI_CASTLE =
+      createMarker([54.6522007,24.9331594], _grn_icon, '', 50);
 
 
-    const markers = {
-      "green": GRN_CIRCLE,
-      "yellow": YLW_CIRCLE,
-      "red": RED_CIRCLE,
-      "blue": DEF_CIRCLE,
+
+    const sight_markers = {
+      "Gediminas Tower": GEDIMINAS_TOWER_MARKER,
+      "TV Tower": TV_TOWER_MARKER,
+      "Republic of Užupis": UZUPIS_MARKER,
+      "Trakai Castle": TRAKAI_CASTLE,
     }
 
-    let controlLayers = L.control.layers({map}, markers, {collapsed: false});
+
+    let controlLayers = L.control.layers({map}, sight_markers, {collapsed: false});
     controlLayers.addTo(map)
 
-    map.on('dblclick', (e) => {
-      marker = createMarker(e.latlng);
-      marker.bindPopup(`${e.latlng.lat.toFixed(5)}<br> ${e.latlng.lng.toFixed(5)}`);
-      controlLayers.remove();
-      markers[id] = marker;
-      controlLayers = L.control.layers({map}, markers, {collapsed: false});
-      controlLayers.addTo(map);
-      id++;
-    });
-
-    map.on('contextmenu', (e) => {
-      e.preventDefault();
-    })
 
 
-    L.Routing.control({
-      waypoints: [
-        L.latLng(GRN_CIRCLE._latlng.lat, GRN_CIRCLE._latlng.lng),
-        L.latLng(YLW_CIRCLE._latlng.lat, YLW_CIRCLE._latlng.lng)
-      ],
-      color: 'blue'
-    }).addTo(map);
-
-
-
-
-
-    function createMarker(coordinates, icon = _grn_icon, color = 'yellow', radius = 50, draggable = true) {
+  ////////////////////////////// Functions /////////////////////////////////////
+    function createMarker(coordinates, icon = _grn_icon, color = 'yellow', radius = 50, draggable = false) {
       const marker = L.marker(coordinates, {
         icon: icon,
         color: color,
@@ -143,10 +120,67 @@
       });
       marker.addTo(map).on('click', (e) => {
         coordinates = e.latlng;
-      })
+      });
       marker.bindPopup(`${Number(coordinates[0]).toFixed(5)}<br> ${Number(coordinates[1]).toFixed(5)}`);
       return marker;
     };
+
+
+
+
+    function createRoute(coords, destination){
+      if(currentRoute !== ''){
+        currentRoute.remove();
+      }
+
+      currentRoute = L.Routing.control({
+        waypoints: [
+          L.latLng(coords),
+          L.latLng(destination.lat, destination.lng)
+        ],
+        fitSelectedRoutes: true,
+        createMarker: function() { return null; },
+        color: 'yellow'
+      });
+      currentRoute.addTo(map);
+    }
+
+
+
+    function onSubmit(){
+      const coords = document.getElementById('coordInput').value.split(',');
+      const destination = sight_markers[document.getElementById('coordinates-input').value]._latlng;
+
+      const marker = createMarker(coords);
+      createRoute(coords, destination);
+    }
+
+    //////////////  Listeners   ////////////////
+/*
+    map.on('dblclick', (e) => {
+      marker = createMarker(e.latlng);
+      marker.bindPopup(`${e.latlng.lat.toFixed(5)}<br> ${e.latlng.lng.toFixed(5)}`);
+      controlLayers.remove();
+      sight_markers[id] = marker;
+      controlLayers = L.control.layers({map}, sight_markers, {collapsed: false});
+      controlLayers.addTo(map);
+      createRoute(marker.coordinates, marker);
+      id++;
+    });
+*/
+
+    map.on('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
+
+
+    document.getElementById('coordForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+    })
+
+
+
 
   </script>
 </body>

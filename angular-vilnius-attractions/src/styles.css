@@ -23,26 +23,37 @@
 .coordinates-input{
   height: 3rem;
   border: none;
-  color: #2F4858;
+  color:#2F4858;
   font-weight: bold;
-  background-color: #c3d4aa;
+  background-color:#c3d4aa;
 }
 .coordinates-input:hover{
-  cursor:pointer;
   background-color: rgb(195, 212, 170, 0.5);
 }
 .coordinates-input:active{
   border: none;
-  background-color: #c3d4aabf;
+  background-color: #c3d4aa;
 }
 
+
+input,
+select {
+  padding-left: 0.5rem;
+}
+select:hover{
+  cursor: pointer;
+}
 option{
   height: 3rem;
   font-weight: bold;
 }
 
-
-
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
 
 .coordinates-btn{
   height: 2rem;
@@ -60,10 +71,6 @@ option{
   border: none;
   background-color:rgb(149, 185, 157, 0.75);
 }
-
-
-
-
 
 
 
