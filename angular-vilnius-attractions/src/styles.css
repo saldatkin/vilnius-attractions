@@ -1,12 +1,40 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(195, 212, 170, 0.3);
+}
+.header{
+  margin: 0;
+  padding: 0;
+  height: 4rem;
+  font-size: 2rem;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
+  color:#273615;
+  background-color: rgb(80, 129, 130, 0.75);
+}
+.header-wrapper{
+  margin:  auto;
+  height: 100%;
+  text-align: center;
+}
+.header-caption{
+  margin: 0 5rem;
+  padding: 1rem 0 1rem 15rem;
+}
+
+
 #map{
   margin: 0 auto;
   height: 30rem;
   width: 50rem;
-  border: 0.2rem rgb(0, 0, 0) solid;
+  border: 0.2rem #2F4858 solid;
 }
 
 
-
+.main{
+  margin-top: 1rem;
+}
 
 .main-wrapper{
   width: 70rem;
@@ -15,10 +43,16 @@
   justify-content: center;
 }
 
+.form-wrapper{
+}
+
 .coordinates-form{
   width: 15rem;
   display: grid;
   grid-auto-flow: row;
+  overflow: hidden;
+  border-radius: 0.2rem;
+
 }
 .coordinates-input{
   height: 3rem;

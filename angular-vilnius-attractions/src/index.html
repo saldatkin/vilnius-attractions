@@ -18,11 +18,13 @@
 <body>
 
   <!---------------------------------HTML----------------------------------->
-  <header>
-
+  <header class="header">
+    <div class="header-wrapper">
+      <p class="header-caption">Vilnius Attractions</p>
+    </div>
   </header>
 
-  <main>
+  <main class="main">
     <div class="main-wrapper">
       <div class="form-wrapper">
         <form id="coordForm" class="coordinates-form">
@@ -37,7 +39,6 @@
         </form>
       </div>
       <div id="map" class="mapper">
-
       </div>
     </div>
   </div>
@@ -75,25 +76,37 @@
     let currentRoute = '';
     let marker = '';
 
-    const _grn_icon = L.icon({
+    const _custom_icon = L.icon({
       iconUrl: 'assets/custom-marker.svg',
-      iconSize: [40,40],
-    })
+      iconSize: [30,30],
+    });
+    const _gedimin_icon = L.icon({
+      iconUrl: 'assets/gediminas_tower.png',
+      iconSize: [30,30],
+    });
+    const _tvtower_icon = L.icon({
+      iconUrl: 'assets/tv_tower.jpeg',
+      iconSize: [10,50],
+    });
+    const _uzupis_icon = L.icon({
+      iconUrl: 'assets/uzupis.png',
+      iconSize: [30,30],
+    });
+    const _trakai_icon = L.icon({
+      iconUrl: 'assets/trakai.jpg',
+      iconSize: [40,25],
+    });
 
 
 
     const GEDIMINAS_TOWER_MARKER =
-      createMarker([54.68676, 25.29070], _grn_icon,  'green', 50);
+      createMarker([54.68676, 25.29070], _gedimin_icon,  'green', 50);
     const TV_TOWER_MARKER =
-      createMarker([54.68717, 25.21475], _grn_icon, 'yellow', 50);
+      createMarker([54.68717, 25.21475], _tvtower_icon, 'yellow', 50);
     const UZUPIS_MARKER =
-      createMarker([54.68176, 25.30070], _grn_icon, 'red', 50)
-      .bindTooltip("Uzupis", {
-        permanent: true,
-        direction: 'right'
-      });
+      createMarker([54.68176, 25.30070], _uzupis_icon, 'red', 50);
     const TRAKAI_CASTLE =
-      createMarker([54.6522007,24.9331594], _grn_icon, '', 50);
+      createMarker([54.6522007,24.9331594], _trakai_icon, '', 50);
 
 
 
@@ -105,22 +118,25 @@
     }
 
 
-    let controlLayers = L.control.layers({map}, sight_markers, {collapsed: false});
+    let controlLayers = L.control.layers({}, sight_markers, {collapsed: false});
     controlLayers.addTo(map)
 
 
 
-  ////////////////////////////// Functions /////////////////////////////////////
-    function createMarker(coordinates, icon = _grn_icon, color = 'yellow', radius = 50, draggable = false) {
+//////////////////////////////// Functions /////////////////////////////////////
+    function createMarker(coordinates, icon = _custom_icon, color = 'yellow', radius = 50, draggable = false) {
       const marker = L.marker(coordinates, {
         icon: icon,
         color: color,
         radius: radius,
         draggable: draggable,
+        riseOnHover: true,
       });
+
       marker.addTo(map).on('click', (e) => {
         coordinates = e.latlng;
       });
+
       marker.bindPopup(`${Number(coordinates[0]).toFixed(5)}<br> ${Number(coordinates[1]).toFixed(5)}`);
       return marker;
     };
@@ -155,32 +171,15 @@
       createRoute(coords, destination);
     }
 
-    //////////////  Listeners   ////////////////
-/*
-    map.on('dblclick', (e) => {
-      marker = createMarker(e.latlng);
-      marker.bindPopup(`${e.latlng.lat.toFixed(5)}<br> ${e.latlng.lng.toFixed(5)}`);
-      controlLayers.remove();
-      sight_markers[id] = marker;
-      controlLayers = L.control.layers({map}, sight_markers, {collapsed: false});
-      controlLayers.addTo(map);
-      createRoute(marker.coordinates, marker);
-      id++;
-    });
-*/
+/////////////////////////  Listeners   ///////////////////////////
 
     map.on('contextmenu', (e) => {
       e.preventDefault();
     });
 
-
-
     document.getElementById('coordForm').addEventListener('submit', (e) => {
       e.preventDefault();
     })
-
-
-
 
   </script>
 </body>
