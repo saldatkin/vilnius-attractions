@@ -236,6 +236,9 @@ footer{
       margin-top: 5rem;
       height: 80rem;
     }
+    .leaflet-control-layers{
+      font-size: 1rem;
+    }
   }
   @media screen and (max-width: 600px) {
     html{
@@ -245,15 +248,25 @@ footer{
       margin-top: 6rem;
       height: 100rem;
     }
+    .leaflet-control-layers{
+      display: none;
+    }
+
+    footer{
+      height: 8rem;
+    }
   }
   @media screen and (max-width: 500px) {
     html{
       font-size: 5px;
+      overflow: hidden;
     }
     #map{
       margin-top: 6rem;
       height: 120rem;
     }
+
+
   }
   @media screen and (max-width: 420px) {
     html{
@@ -298,9 +311,12 @@ footer{
     .author-name{
       font-size: 3rem;
     }
-    .leaflet-control-layers{
-      display: none;
+  @media screen and (max-width: 330px){
+    html,body{
+      min-width: 330px;
+      width: 100%;
     }
+  }
   }
 }
 
