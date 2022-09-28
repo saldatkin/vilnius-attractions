@@ -10,7 +10,7 @@ body{
   margin: 0 auto;
   width: 80rem;
 }
-.header, footer{
+header, footer{
   margin: 0;
   padding: 0;
   width: 100%;
@@ -32,8 +32,8 @@ body{
 
 #map{
   margin: 0 auto;
-  height: 30rem;
-  width: 50rem;
+  height: 45rem;
+  width: 60rem;
   border: 0.2rem #2F4858 solid;
 }
 
@@ -115,16 +115,21 @@ footer{
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .footer-img-div{
+  margin-left: 7rem;
   width: 2rem;
   height: 2rem;
 }
 .footer-img{
   width: 100%;
+}
+
+.date-creation{
+  margin-right: 3rem;
 }
 
 
@@ -150,5 +155,152 @@ footer{
 }
 .leaflet-routing-container{
   display: none;
+}
+
+
+
+
+
+@media screen and (max-width: 1300px) {
+  html{
+    font-size: 13px;
+  }
+  .main-wrapper{
+    margin-top: 3rem;
+  }
+}
+@media screen and (max-width: 1100px) {
+  html{
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 900px) {
+  html{
+    font-size: 9px;
+  }
+  .main-wrapper{
+    flex-direction: column;
+  }
+  header{
+    height: 8rem;
+  }
+  .header-wrapper{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-caption{
+    padding: 0;
+    font-size: 3.5rem;
+  }
+  #map{
+    height: 60rem;
+  }
+  #map,
+  .coordinates-form {
+    margin-top: 2rem;
+    width: 80rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .coordinates-input,
+  .coordinates-btn{
+    height: 5rem;
+  }
+  footer{
+    font-size: 2rem;
+  }
+  .date-creation,
+  .footer-img{
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .leaflet-control-layers{
+    width: 18rem;
+    height: 10rem;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 750px) {
+    html{
+      font-size: 7px;
+    }
+
+    .coordinates-input,
+    .coordinates-btn{
+      height: 8rem;
+    }
+    #map{
+      margin-top: 5rem;
+      height: 80rem;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    html{
+      font-size: 6px;
+    }
+    #map{
+      margin-top: 6rem;
+      height: 100rem;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    html{
+      font-size: 5px;
+    }
+    #map{
+      margin-top: 6rem;
+      height: 120rem;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    html{
+      font-size: 4px;
+    }
+    header{
+      height: 12rem;
+    }
+    .header-caption{
+      font-size: 6rem;
+    }
+    .main-wrapper{
+      margin: 0;
+      width: 100vw;
+    }
+    .coordinates-form{
+      width: 100%;
+      font-size: 3rem;
+    }
+    #map,
+    .coordinates-input,
+    .coordinates-btn{
+      width: 100%;
+      border: none;
+    }
+    #map{
+      margin-top: 5rem;
+      height: 170rem;
+    }
+    .coordinates-input,
+    .coordinates-btn{
+      height: 10rem;
+    }
+    footer{
+      height: 10rem;
+    }
+    .footer-img-div{
+      width: 5rem;
+      height: 6rem;
+    }
+    .date-creation,
+    .author-name{
+      font-size: 3rem;
+    }
+    .leaflet-control-layers{
+      display: none;
+    }
+  }
 }
 

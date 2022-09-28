@@ -5,12 +5,12 @@
   <title>Vilnius Attractions</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/vilnius-logo.png">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin=""/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
+  <link rel="icon" href="/home/aliaksei/frontend-projects/vilnius-attractions/src/assets/vilnius-logo.png">
   <script src="/main.js"></script>
 </head>
 <body>
@@ -27,7 +27,7 @@
     <div class="main-wrapper wrapper">
       <div class="form-wrapper">
         <form id="coordForm" class="coordinates-form">
-          please, type coordinates of your location below
+          please, type coordinates of your location below and click SUBMIT
           <input autocomplete="off" value="" id="coordInput" class="coordinates-input" type="text" placeholder="ex: 55.555555, 22.222222">
           <select value="destination" class="coordinates-input select-attr" id="coordinates-input" name="select-attr">
             <option value="Gediminas Tower">Gediminas Castle Tower</option>
@@ -85,9 +85,7 @@
     });
     CartoDB_Voyager.addTo(map);
 
-    const digits = ['.',0,1,2,3,4,5,6,7,8,9];
 
-    let id = 0;
     let currentRoute = '';
     let marker = '';
     let isCoordsCorrect = false;
