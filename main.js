@@ -14,23 +14,23 @@ const map = L.map('map').setView([54.68717, 25.16475], 10);
 
 
     const _custom_icon = L.icon({
-      iconUrl: 'src/assets/custom-marker.svg',
+      iconUrl: 'assets/custom-marker.svg',
       iconSize: [30,30],
     });
     const _gedimin_icon = L.icon({
-      iconUrl: 'src/assets/gediminas_tower.png',
+      iconUrl: 'assets/gediminas_tower.png',
       iconSize: [30,30],
     });
     const _tvtower_icon = L.icon({
-      iconUrl: 'src/assets/tv_tower.jpeg',
+      iconUrl: 'assets/tv_tower.jpeg',
       iconSize: [10,50],
     });
     const _uzupis_icon = L.icon({
-      iconUrl: 'src/assets/uzupis.png',
+      iconUrl: 'assets/uzupis.png',
       iconSize: [30,30],
     });
     const _trakai_icon = L.icon({
-      iconUrl: 'src/assets/trakai.jpg',
+      iconUrl: 'assets/trakai.jpg',
       iconSize: [40,25],
     });
 
