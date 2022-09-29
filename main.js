@@ -59,8 +59,6 @@ const map = L.map('map').setView([54.68717, 25.16475], 10);
     controlLayers.addTo(map)
 
 
-
-//////////////////////////////// Functions /////////////////////////////////////
     function createMarker(coordinates, icon = _custom_icon, color = 'yellow', radius = 50, draggable = false) {
       const marker = L.marker(coordinates, {
         icon: icon,
@@ -125,7 +123,6 @@ const map = L.map('map').setView([54.68717, 25.16475], 10);
         && coordinates[1] <= 90);
     };
 
-/////////////////////////  Listeners   ///////////////////////////
 
     map.on('contextmenu', (e) => {
       e.preventDefault();
