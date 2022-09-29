@@ -14,15 +14,15 @@ const map = L.map('map').setView([54.68717, 25.16475], 10);
 
 
     const _custom_icon = L.icon({
-      iconUrl: '/assets/custom-marker.svg',
+      iconUrl: 'vilnius-attractions/assets/custom-marker.svg',
       iconSize: [30,30],
     });
     const _gedimin_icon = L.icon({
-      iconUrl: '/home/aliaksei/frontend-projects/vilnius-attractions/assets/gediminas_tower.png',
+      iconUrl: 'vilnius-attractions/assets/gediminas_tower.png',
       iconSize: [30,30],
     });
     const _tvtower_icon = L.icon({
-      iconUrl: 'home/aliaksei/frontend-projects/vilnius-attractions/assets/tv_tower.jpeg',
+      iconUrl: 'vilnius-attractions/assets/tv_tower.jpeg',
       iconSize: [10,50],
     });
     const _uzupis_icon = L.icon({
@@ -30,7 +30,7 @@ const map = L.map('map').setView([54.68717, 25.16475], 10);
       iconSize: [30,30],
     });
     const _trakai_icon = L.icon({
-      iconUrl: './vilnius-attractions/assets/trakai.jpg',
+      iconUrl: 'vilnius-attractions/assets/trakai.jpg',
       iconSize: [40,25],
     });
 
