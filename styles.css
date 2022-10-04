@@ -246,7 +246,7 @@ footer{
     }
     #map{
       margin-top: 6rem;
-      height: 100rem;
+      height: 50vh;
     }
     .leaflet-control-layers{
       display: none;
