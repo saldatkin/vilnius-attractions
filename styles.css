@@ -156,6 +156,9 @@ footer{
 .leaflet-routing-container{
   display: none;
 }
+.leaflet-popup-close-button{
+  display: none;
+}
 
 
 
